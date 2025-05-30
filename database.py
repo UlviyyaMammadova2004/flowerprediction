@@ -5,7 +5,7 @@ MONGO_URI = "mongodb+srv://mammadovaulia82:Jungkook_19971997@cluster0.2g47tbp.mo
 
 client = MongoClient(MONGO_URI)
 
-# DÜZELTİLDİ: doğru veritabanı ve koleksiyon
+# DÜZELTİLDİ: doğru veritabanı ve koleksiyon.
 db = client["predictions"]
 collection = db["predicts"]
 
