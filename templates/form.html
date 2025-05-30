@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌸 Flower Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5fff5;
+      padding: 2rem;
+    }
+    .form-container {
+      max-width: 400px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+    }
+    button {
+      padding: 0.7rem;
+      background-color: #90ee90;
+      border: none;
+      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>🌼 Predict Flower Type</h2>
+    <form action="/predict-form" method="post">
+      <input type="text" name="f1" placeholder="Sepal length (cm)" required>
+      <input type="text" name="f2" placeholder="Sepal width (cm)" required>
+      <input type="text" name="f3" placeholder="Petal length (cm)" required>
+      <input type="text" name="f4" placeholder="Petal width (cm)" required>
+      <button type="submit">Predict</button>
+    </form>
+    {% if prediction %}
+      <p><strong>🌸 Predicted class:</strong> {{ prediction }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>
