@@ -7,7 +7,7 @@ model = joblib.load("iris_model.pkl")
 
 @app.route("/")
 def home():
-    return "✅ Iris Model API is running on Render!"
+    return render_template("form.html")
 
 @app.route("/predict", methods=["POST"])
 def predict_api():
