@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, render_template
 import numpy as np
 import joblib
 
@@ -9,30 +9,28 @@ model = joblib.load("iris_model.pkl")
 def home():
     return render_template("form.html")
 
-@app.route("/predict", methods=["POST"])
-def predict_api():
-    data = request.get_json()
-    prediction = model.predict(np.array(data["data"]))
-    return jsonify({"prediction": prediction.tolist()})
-
-# 🔸 HTML form gösterme
-@app.route("/form")
-def form():
-    return render_template("form.html")
-
-# 🔸 HTML üzerinden gelen formu işleyip sonucu gösterme
-@app.route("/predict-form", methods=["POST"])
+@app.route("/predict-form", methods=["GET", "POST"])
 def predict_form():
-    try:
-        f1 = float(request.form["f1"])
-        f2 = float(request.form["f2"])
-        f3 = float(request.form["f3"])
-        f4 = float(request.form["f4"])
-        data = np.array([[f1, f2, f3, f4]])
-        prediction = model.predict(data)[0]
-        return render_template("form.html", prediction=prediction)
-    except Exception as e:
-        return render_template("form.html", prediction="Error: " + str(e))
+    if request.method == "POST":
+        try:
+            # Formdan verileri alir
+            f1 = request.form["f1"]
+            f2 = request.form["f2"]
+            f3 = request.form["f3"]
+            f4 = request.form["f4"]
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+            # Float'a çevirip tahmin yapar
+            data = np.array([[float(f1), float(f2), float(f3), float(f4)]])
+            prediction = model.predict(data)[0]
+
+            # Sonuçla birlikte inputları tekrar form sayfasına gönderir
+            return render_template(
+                "form.html",
+                prediction=prediction,
+                f1=f1, f2=f2, f3=f3, f4=f4
+            )
+        except Exception as e:
+            return render_template("form.html", error=str(e))
+    
+    # GET methodu için boş form yaratir
+    return render_template("form.html")
