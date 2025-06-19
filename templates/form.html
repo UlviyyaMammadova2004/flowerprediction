@@ -1,9 +1,8 @@
-<!-- templates/form.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🌸 Flower Prediction</title>
   <style>
     body {
@@ -19,21 +18,18 @@
       background: white;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    input {
+    input, button {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.7rem;
       margin: 0.5rem 0;
-      border: 1px solid #ccc;
+      box-sizing: border-box;
       border-radius: 5px;
+      border: 1px solid #ccc;
     }
     button {
-      padding: 0.7rem;
       background-color: #90ee90;
-      border: none;
-      width: 100%;
       font-weight: bold;
       cursor: pointer;
-      border-radius: 5px;
     }
     .result {
       margin-top: 1rem;
@@ -46,17 +42,16 @@
   <div class="form-container">
     <h2>🌼 Predict Flower Type</h2>
     <form action="/predict-form" method="post">
-      <input type="number" name="f1" step="any" placeholder="Sepal length (cm)" value="{{ f1 or '' }}" required>
-      <input type="number" name="f2" step="any" placeholder="Sepal width (cm)" value="{{ f2 or '' }}" required>
-      <input type="number" name="f3" step="any" placeholder="Petal length (cm)" value="{{ f3 or '' }}" required>
-      <input type="number" name="f4" step="any" placeholder="Petal width (cm)" value="{{ f4 or '' }}" required>
+      <input type="number" name="f1" step="any" placeholder="Sepal length (cm)" value="{{ f1 or '' }}" required />
+      <input type="number" name="f2" step="any" placeholder="Sepal width (cm)" value="{{ f2 or '' }}" required />
+      <input type="number" name="f3" step="any" placeholder="Petal length (cm)" value="{{ f3 or '' }}" required />
+      <input type="number" name="f4" step="any" placeholder="Petal width (cm)" value="{{ f4 or '' }}" required />
       <button type="submit">Predict</button>
     </form>
-
     {% if prediction is defined %}
       <p class="result">🌸 <strong>Predicted class:</strong> {{ prediction }}</p>
     {% elif error %}
-      <p class="result" style="color: red;">⚠️ Error: {{ error }}</p>
+      <p class="result" style="color:red;">⚠️ Error: {{ error }}</p>
     {% endif %}
   </div>
 </body>
