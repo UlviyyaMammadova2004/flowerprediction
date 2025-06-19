@@ -3,15 +3,15 @@ import json
 import numpy as np
 
 def init():
-    global model, scaler
-    scaler, model = joblib.load("iris_model.pkl")
+    global model
+    model_path = "iris_model.pkl"
+    model = joblib.load(model_path)
 
 def run(data):
     try:
         inputs = json.loads(data)["data"]
-        inputs_scaled = scaler.transform(np.array(inputs))
-        prediction = model.predict(inputs_scaled)
+        prediction = model.predict(np.array(inputs))
         return prediction.tolist()
     except Exception as e:
-        return str(e)
+        return str(e) 
 
