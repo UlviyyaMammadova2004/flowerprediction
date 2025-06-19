@@ -1,7 +1,9 @@
+<!-- templates/form.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🌸 Flower Prediction</title>
   <style>
     body {
@@ -21,18 +23,18 @@
       width: 100%;
       padding: 0.5rem;
       margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
     button {
-    padding: 0.7rem;
-    background-color: #90ee90;
-    border: none;
-    width: 100%;
-    font-weight: bold;
-    cursor: pointer;
-    box-sizing: border-box;
-}
-
-    
+      padding: 0.7rem;
+      background-color: #90ee90;
+      border: none;
+      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
     .result {
       margin-top: 1rem;
       font-size: 1.1rem;
@@ -44,10 +46,10 @@
   <div class="form-container">
     <h2>🌼 Predict Flower Type</h2>
     <form action="/predict-form" method="post">
-      <input type="text" name="f1" placeholder="Sepal length (cm)" value="{{ f1 or '' }}" required>
-      <input type="text" name="f2" placeholder="Sepal width (cm)" value="{{ f2 or '' }}" required>
-      <input type="text" name="f3" placeholder="Petal length (cm)" value="{{ f3 or '' }}" required>
-      <input type="text" name="f4" placeholder="Petal width (cm)" value="{{ f4 or '' }}" required>
+      <input type="number" name="f1" step="any" placeholder="Sepal length (cm)" value="{{ f1 or '' }}" required>
+      <input type="number" name="f2" step="any" placeholder="Sepal width (cm)" value="{{ f2 or '' }}" required>
+      <input type="number" name="f3" step="any" placeholder="Petal length (cm)" value="{{ f3 or '' }}" required>
+      <input type="number" name="f4" step="any" placeholder="Petal width (cm)" value="{{ f4 or '' }}" required>
       <button type="submit">Predict</button>
     </form>
 
